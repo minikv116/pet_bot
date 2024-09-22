@@ -21,7 +21,7 @@ async def handle_youtube_link(message: Message):
     audio_file = None  
     for attempt in range(1, max_attempts + 1):
         # Уведомляем пользователя о попытке загрузки аудио
-        await message.answer(f'Попытка {attempt} загрузить аудио с YouTube...')
+        await message.answer(f'Попытка {attempt} загрузить аудио из видео...')
         
         # Пытаемся скачать аудиофайл с YouTube с помощью функции download_audio_from_youtube
         audio_file = await download_audio_from_youtube(youtube_link)

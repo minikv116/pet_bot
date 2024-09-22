@@ -1,5 +1,4 @@
 import uuid
-import os
 from aiogram import Router, F
 from aiogram.types import Message
 from botlogic.utils.audio_processing import process_audio_and_respond
@@ -28,7 +27,9 @@ async def handle_voice(message: Message):
 
     # Передаем голосовое сообщение на обработку
     await process_audio_file(file_info, message.bot, message)
-    await message.answer("Голосовое сообщение обработано.")
+    # Подтверждение заврешения обработки файла только в личных сообщениях
+    if message.chat.type == "private":
+        await message.answer("Голосовое сообщение обработано.")
 
 
 # Обработка аудиофайлов
@@ -40,4 +41,6 @@ async def handle_audio(message: Message):
 
     # Передаем аудиофайл на обработку
     await process_audio_file(file_info, message.bot, message)
-    await message.answer("Аудиофайл обработан.")
+    # Подтверждение заврешения обработки файла только в личных сообщениях
+    if message.chat.type == "private":
+        await message.answer("Аудиофайл обработан.")

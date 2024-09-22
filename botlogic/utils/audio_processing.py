@@ -35,7 +35,7 @@ async def process_audio_and_respond(audio_file, message):
         os.remove(full_text_filename)  # Удаляем файл после отправки
 
         # Отправляем краткую версию текста
-        await message.answer(f'Краткий пересказ: {summary}')
+        await message.reply(f'Краткий пересказ: {summary}')
     else:
         # Если текст короче лимита, отправляем его полностью
-        await message.answer(f'Полный текст: {recognized_text}')
+        await message.reply(f'Расшифровка: {recognized_text}')
