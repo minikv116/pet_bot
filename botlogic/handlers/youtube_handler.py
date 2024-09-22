@@ -1,6 +1,4 @@
-import os
-import uuid
-from aiogram import Router
+from aiogram import Router, F
 from aiogram.types import Message
 from botlogic.utils.downloader import download_audio_from_youtube
 from botlogic.utils.audio_processing import process_audio_and_respond 
@@ -10,7 +8,8 @@ router = Router()
 
 
 # Обработчик сообщений с YouTube ссылками, работает только в личных сообщениях
-@router.message(lambda msg: ("youtube.com" in msg.text or "youtu.be" in msg.text or "rutube.ru" in msg.text) and msg.chat.type == "private")
+#@router.message(lambda msg: ("youtube.com" in msg.text or "youtu.be" in msg.text or "rutube.ru" in msg.text) and msg.chat.type == "private")
+@router.message(F.text.func(lambda text: "youtube.com" in text or "youtu.be" in text), F.chat.type == "private")
 async def handle_youtube_link(message: Message):
     # Извлекаем ссылку на YouTube из сообщения
     youtube_link = message.text

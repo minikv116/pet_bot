@@ -17,7 +17,7 @@ logging.basicConfig(
 dp = Dispatcher(storage=MemoryStorage())
 
 # Регистрация обработчиков
-dp.include_router(commands.router)
+dp.include_router(commands.router) 
 dp.include_router(voice_handler.router)
 dp.include_router(youtube_handler.router)
 
